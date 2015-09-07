@@ -7,7 +7,7 @@
         "Cache"
     ],
     "require": {
-        "doctrine/doctrine-cache-bundle": "dev-master"
+        "doctrine/doctrine-cache-bundle": "1.*"
     },
     "autoload": {
         "psr-0": {
