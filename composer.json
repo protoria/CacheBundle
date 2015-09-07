@@ -6,10 +6,6 @@
         "Igdr",
         "Cache"
     ],
-    "require": {
-        "doctrine/doctrine-cache-bundle": "dev-master"
-    },
-    "minimum-stability": "stable",
     "autoload": {
         "psr-0": {
             "Igdr\\Bundle\\CacheBundle": ""
