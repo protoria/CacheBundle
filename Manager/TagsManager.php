@@ -4,9 +4,9 @@ namespace Igdr\Bundle\CacheBundle\Manager;
 use Doctrine\Common\Cache\Cache;
 
 /**
- * Provide tags functionality to memcache
+ * Provide tags functionality
  */
-class TagManager
+class TagsManager
 {
     /**
      * @var string
