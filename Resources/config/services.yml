@@ -1,0 +1,5 @@
+services:
+    igdr_cache.manager.tags:
+        class: Igdr\Bundle\CacheBundle\Manager\TagManager
+        arguments: [@doctrine_cache.providers.app_cache]
+

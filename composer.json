@@ -1,0 +1,19 @@
+{
+    "name": "igdr/cache-bundle",
+    "type": "symfony-bundle",
+    "description": "Cache Bundle",
+    "keywords": [
+        "Igdr",
+        "Cache"
+    ],
+    "require": {
+        "doctrine/doctrine-cache-bundle": "dev-master",
+        "doctrine/cache": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Igdr\\Bundle\\CacheBundle": ""
+        }
+    },
+    "target-dir": "Igdr/Bundle/CacheBundle"
+}
