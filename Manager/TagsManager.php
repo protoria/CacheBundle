@@ -2,6 +2,7 @@
 namespace Igdr\Bundle\CacheBundle\Manager;
 
 use Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Cache\CacheProvider;
 
 /**
  * Provide tags functionality
@@ -14,16 +15,16 @@ class TagsManager
     const STORE_KEY = '_tags';
 
     /**
-     * @var Cache
+     * @var CacheProvider
      */
-    private $cache;
+    private $cacheProvider;
 
     /**
-     * @param Cache $cache
+     * @param Cache $cacheProvider
      */
-    public function __construct(Cache $cache)
+    public function __construct(CacheProvider $cacheProvider)
     {
-        $this->cache = $cache;
+        $this->cacheProvider = $cacheProvider;
     }
 
     /**
@@ -46,7 +47,7 @@ class TagsManager
         if ($stored = $this->getKeys($tag)) {
             $tags = array_merge($tags, $stored);
         }
-        $this->cache->save($this->getCacheId($tag), $tags);
+        $this->cacheProvider->save($this->getCacheId($tag), $tags);
     }
 
     /**
@@ -56,7 +57,7 @@ class TagsManager
      */
     public function getKeys($tag)
     {
-        return $this->cache->fetch($this->getCacheId($tag));
+        return $this->cacheProvider->fetch($this->getCacheId($tag));
     }
 
     /**
@@ -64,18 +65,20 @@ class TagsManager
      */
     public function deleteKeys($tag)
     {
-        $this->cache->delete($this->getCacheId($tag));
+        $this->cacheProvider->delete($this->getCacheId($tag));
     }
 
     /**
-     * @param string $tag
+     * @param array $tags
      */
-    public function cleanCacheByTag($tag)
+    public function cleanCacheByTags(array $tags)
     {
-        $keys = (array)$this->getKeys($tag);
-        foreach ($keys as $key) {
-            $this->cache->delete($key);
+        foreach ($tags as $tag) {
+            $keys = (array)$this->getKeys($tag);
+            foreach ($keys as $key) {
+                $this->cacheProvider->delete($key);
+            }
+            $this->deleteKeys($tag);
         }
-        $this->deleteKeys($tag);
     }
 }

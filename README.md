@@ -22,3 +22,8 @@ Then add the CacheBundle to your application kernel:
             // ...
         );
     }
+
+Add configuration to config.yml
+
+    igdr_cache:
+        cache_provider: doctrine_cache.providers.app_cache
