@@ -9,11 +9,6 @@ use Doctrine\Common\Cache\CacheProvider;
 class CacheManager
 {
     /**
-     * @var string
-     */
-    const STORE_KEY = '_tags';
-
-    /**
      * @var CacheProvider
      */
     private $cacheProvider;
@@ -54,7 +49,7 @@ class CacheManager
     {
         $success = $this->cacheProvider->save($id, $data, $lifeTime);
         if ($success === true && !empty($tags)) {
-            $this->tagsManager->addKey($tags, $id);
+            $this->tagsManager->addKeys($tags, $id);
         }
 
         return $success;

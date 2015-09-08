@@ -1,7 +1,6 @@
 <?php
 namespace Igdr\Bundle\CacheBundle\Manager;
 
-use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\CacheProvider;
 
 /**
@@ -20,7 +19,7 @@ class TagsManager
     private $cacheProvider;
 
     /**
-     * @param Cache $cacheProvider
+     * @param CacheProvider $cacheProvider
      */
     public function __construct(CacheProvider $cacheProvider)
     {
@@ -48,6 +47,17 @@ class TagsManager
             $tags = array_merge($tags, $stored);
         }
         $this->cacheProvider->save($this->getCacheId($tag), $tags);
+    }
+
+    /**
+     * @param array        $tags
+     * @param string|array $key
+     */
+    public function addKeys(array $tags, $key)
+    {
+        foreach ($tags as $tag) {
+            $this->addKey($tag, $key);
+        }
     }
 
     /**
