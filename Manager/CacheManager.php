@@ -56,6 +56,14 @@ class CacheManager
     }
 
     /**
+     * @return bool
+     */
+    public function clean()
+    {
+        return $this->cacheProvider->deleteAll();
+    }
+
+    /**
      * @param string $id
      *
      * @return bool
