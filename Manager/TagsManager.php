@@ -42,7 +42,7 @@ class TagsManager
      */
     public function addKey($tag, $key)
     {
-        $tags = (array)$key;
+        $tags = (array) $key;
         if ($stored = $this->getKeys($tag)) {
             $tags = array_merge($tags, $stored);
         }
@@ -84,7 +84,7 @@ class TagsManager
     public function cleanCacheByTags(array $tags)
     {
         foreach ($tags as $tag) {
-            $keys = (array)$this->getKeys($tag);
+            $keys = (array) $this->getKeys($tag);
             foreach ($keys as $key) {
                 $this->cacheProvider->delete($key);
             }

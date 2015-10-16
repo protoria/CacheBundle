@@ -21,7 +21,13 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('cache_provider')->isRequired()->end()
+                ->scalarNode('cache_provider')
+                    ->isRequired()
+                ->end()
+                ->scalarNode('lifetime')
+                    ->isRequired()
+                    ->defaultValue(0)
+                ->end()
             ->end();
 
         return $builder;

@@ -19,12 +19,20 @@ class CacheManager
     private $tagsManager;
 
     /**
-     * @param CacheProvider $cache
+     * @var int
      */
-    public function __construct(CacheProvider $cache, TagsManager $tagsManager)
+    private $defaultLifeTime = 0;
+
+    /**
+     * @param \Doctrine\Common\Cache\CacheProvider         $cache
+     * @param \Igdr\Bundle\CacheBundle\Manager\TagsManager $tagsManager
+     * @param int                                          $defaultLifeTime
+     */
+    public function __construct(CacheProvider $cache, TagsManager $tagsManager, $defaultLifeTime)
     {
         $this->cacheProvider = $cache;
         $this->tagsManager = $tagsManager;
+        $this->defaultLifeTime = $defaultLifeTime;
     }
 
     /**
@@ -38,15 +46,17 @@ class CacheManager
     }
 
     /**
-     * @param string $id
-     * @param mixed  $data
-     * @param array  $tags
-     * @param int    $lifeTime
+     * @param string   $id
+     * @param mixed    $data
+     * @param array    $tags
+     * @param int|null $lifeTime
      *
      * @return bool
      */
-    public function save($id, $data, array $tags = array(), $lifeTime = 0)
+    public function save($id, $data, array $tags = array(), $lifeTime = null)
     {
+        $lifeTime === null && $lifeTime = $this->defaultLifeTime;
+
         $success = $this->cacheProvider->save($id, $data, $lifeTime);
         if ($success === true && !empty($tags)) {
             $this->tagsManager->addKeys($tags, $id);

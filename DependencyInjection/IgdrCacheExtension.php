@@ -25,6 +25,7 @@ class IgdrCacheExtension extends Extension
 
         //store to config
         $container->setParameter('igdr_manager.config.cache_provider', isset($config['cache_provider']) ? $config['cache_provider'] : null);
+        $container->getDefinition('igdr_cache.manager.cache')->replaceArgument(2, $config['lifetime']);
 
         return $configs;
     }
