@@ -5,4 +5,4 @@ services:
 
     igdr_cache.manager.cache:
         class: Igdr\Bundle\CacheBundle\Manager\CacheManager
-        arguments: ["", @igdr_cache.manager.tags, ""]
+        arguments: ["", "@igdr_cache.manager.tags", ""]
