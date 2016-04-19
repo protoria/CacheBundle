@@ -44,7 +44,7 @@ class TagsManager
     {
         $tags = (array) $key;
         if ($stored = $this->getKeys($tag)) {
-            $tags = array_merge($tags, $stored);
+            $tags = array_unique(array_merge($tags, $stored));
         }
         $this->cacheProvider->save($this->getCacheId($tag), $tags);
     }

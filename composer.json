@@ -1,9 +1,9 @@
 {
-    "name": "igdr/cache-bundle",
+    "name": "protoria/cache-bundle",
     "type": "symfony-bundle",
     "description": "Cache Bundle",
     "keywords": [
-        "Igdr",
+        "Protoria",
         "Cache"
     ],
     "autoload": {
